@@ -38,5 +38,29 @@ routerApi.get(`/deal/:id`, async (req, res) => {
     });
 });
 
+routerApi.get(`/deals/stats`, async (req, res) => {
+
+    db.aggregate([
+        {
+        $match:{},    
+        },
+        {
+            $group:{
+                _id:'totalDocs',
+                deals_count:{$sum:1},
+                total_amount:{$sum:'$amountRequired'},
+                avg_amount:{$avg:'$amountRequired'}
+            }
+        }
+        
+    ])
+    .exec(function(err,result){
+        console.log('result ', result)
+        res.send(result)
+    })
+    
+});
+
+
 
 module.exports= routerApi;
