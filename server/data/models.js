@@ -13,5 +13,3 @@ dealSchema.index({'title':'text'})
 
 module.exports = mongoose.model('deals', dealSchema) 
 
-// module.exports= dealSchema
-// module.exports = dealsCollection
