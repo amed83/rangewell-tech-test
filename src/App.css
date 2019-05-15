@@ -45,6 +45,14 @@
     margin-top:2rem
 }
 
+.Stats >p{
+    font-weight: bold;
+}
+.DealParagraph{
+    cursor:pointer;
+}
+
+
 .Input{
     min-height: 18px;
     margin-right:10px;
