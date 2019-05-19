@@ -42,108 +42,42 @@ routerApi.get('/deal/:id', async (req, res) => {
 // 20190515192049
 // http://localhost:3001/api/deals/
 
-const toDelete = [
-    {
-      "_id": "5cdc585c71f7f02968bac8ca",
-      "title": "rfe",
-      "amountRequired": 4343,
-      "createdAt": "2019-05-15T18:20:12.826Z",
-      "__v": 0
-    },
-    {
-      "_id": "5cdc582f0085ca610409b67f",
-      "title": "iji",
-      "amountRequired": 676,
-      "createdAt": "2019-05-15T18:19:27.548Z",
-      "__v": 0
-    },
-    {
-      "_id": "5cdc5801654aab5afc1e9d65",
-      "title": "rrrtt",
-      "amountRequired": 909,
-      "createdAt": "2019-05-15T18:18:41.859Z",
-      "__v": 0
-    },
-    {
-      "_id": "5cdc57da9045b55564e6f839",
-      "title": "tr",
-      "amountRequired": 434,
-      "createdAt": "2019-05-15T18:18:02.018Z",
-      "__v": 0
-    },
-    {
-      "_id": "5cdc57af9045b55564e6f838",
-      "title": "ere",
-      "amountRequired": 4343,
-      "createdAt": "2019-05-15T18:17:19.537Z",
-      "__v": 0
-    },
-    {
-      "_id": "5cdc5788a44f2512b4e97fbb",
-      "title": "test54",
-      "amountRequired": 4224,
-      "createdAt": "2019-05-15T18:16:40.006Z",
-      "__v": 0
-    },
-    {
-      "_id": "5cdc5756405e754e08d238e2",
-      "title": "test5",
-      "amountRequired": 4343,
-      "createdAt": "2019-05-15T18:15:50.061Z",
-      "__v": 0
-    },
-    {
-      "_id": "5cdc572cbafcb31b4813bfb2",
-      "title": "test4",
-      "amountRequired": 322,
-      "createdAt": "2019-05-15T18:15:08.581Z",
-      "__v": 0
-    },
-    {
-      "_id": "5cdc5724bafcb31b4813bfb1",
-      "title": "test3",
-      "amountRequired": 34,
-      "createdAt": "2019-05-15T18:15:00.937Z",
-      "__v": 0
-    },
-    {
-      "_id": "5cdc56f3ad08b351240badd7",
-      "title": "test3",
-      "amountRequired": 34,
-      "createdAt": "2019-05-15T18:14:11.411Z",
-      "__v": 0
-    },
-    {
-      "_id": "5cdc56f2ad08b351240badd6",
-      "title": "test3",
-      "amountRequired": 34,
-      "createdAt": "2019-05-15T18:14:10.004Z",
-      "__v": 0
-    },
-    {
-      "_id": "5cdc5665b75db76238faa5a1",
-      "title": "test2",
-      "amountRequired": 2,
-      "createdAt": "2019-05-15T18:11:49.128Z",
-      "__v": 0
-    },
-    {
-      "_id": "5cdc5624b75db76238faa5a0",
-      "title": "testing deal",
-      "amountRequired": 343,
-      "createdAt": "2019-05-15T18:10:44.942Z",
-      "__v": 0
-    }
+const toDelete = [{
+    "_id": "5ce1a37c349cf06a7491a52e",
+    "title": "rtr",
+    "amountRequired": 3433,
+    "createdAt": "2019-05-19T18:42:04.664Z",
+    "__v": 0
+  },
+  {
+    "_id": "5ce1a3594a2e3f40982381cd",
+    "title": "ede",
+    "amountRequired": null,
+    "createdAt": "2019-05-19T18:41:29.210Z",
+    "__v": 0
+  },
+  {
+    "_id": "5ce1a2765da784225c83d464",
+    "title": "",
+    "amountRequired": null,
+    "createdAt": "2019-05-19T18:37:42.218Z",
+    "__v": 0
+  },
+  {
+    "_id": "5ce1a18e97a68943644f6e30",
+    "title": "Frenk",
+    "amountRequired": 1452,
+    "createdAt": "2019-05-19T18:33:50.484Z",
+    "__v": 0
+  },
 ]
-// console.log('todelete ', toDelete[0]._id)
-// db.findById(toDelete[0]._id).remove().exec()
-// 
-// toDelete.map(el=>{
-//     let _id = el._id
-//     console.log(el._id)
-//     db.findById(el._id).remove().exec()
-// })
-// 
+// // console.log('todelete ', toDelete[0]._id)
+
+
+toDelete.map(el=>{
+    db.findById(el._id).remove().exec()
+})
+
 
 routerApi.post('/deal/addDeal', async (req, res) => {
     const deal =  new db()
@@ -154,11 +88,17 @@ routerApi.post('/deal/addDeal', async (req, res) => {
         .then((result)=>res.send(result))
 });
 
+routerApi.post('/deal/editDeal',(req,res)=>{
+    const {_id,title,amountRequired}=req.body
+    db.findOneAndUpdate({_id},   {$set:{title,amountRequired}}, {new:true}  )
+    .exec()
+    .then(result=>res.send(result))
+})
 routerApi.get(`/deals/stats`, async (req, res) => {
 
     db.aggregate([
         {
-        $match:{},    
+            $match:{},    
         },
         {
             $group:{
