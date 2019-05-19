@@ -2,7 +2,7 @@
 import {LOAD_DEALS,
     CREATING_NEW_DEAL,
     SAVE_NEW_DEAL, 
-    LOAD_STATS,EDIT_DEAL,SAVE_EDIT,RELOAD_DEALS} from './types'
+    LOAD_STATS,EDIT_DEAL,SAVE_EDIT,RELOAD_DEALS,END_UPDATE} from './types'
 
 
 export const loadDeals = (deals)=>{
@@ -67,7 +67,16 @@ export const saveOnDbAndReload = (updateDeal)=>{
                     type:RELOAD_DEALS,
                 })
             })
+            dispatch(updateTerminated())
         }
+}
+
+export const updateTerminated = ()=>{
+    return dispatch=>{
+        dispatch({
+            type:END_UPDATE
+        })
+    }
 }
 
 export const loadStats = (stats)=>{

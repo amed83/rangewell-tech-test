@@ -38,6 +38,7 @@
     display: flex;
     width:300px;
     justify-content: space-between;
+    cursor: pointer;
 }
 .addBtn{
     width:8rem;

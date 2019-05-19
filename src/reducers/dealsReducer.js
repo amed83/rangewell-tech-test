@@ -5,7 +5,8 @@ import {
     SAVE_NEW_DEAL,LOAD_STATS,
     EDIT_DEAL,
     SAVE_EDIT,
-    RELOAD_DEALS
+    RELOAD_DEALS,
+    END_UPDATE
 }from '../actions/types'
 
 const initialState={
@@ -79,6 +80,12 @@ const dealReducer = (state=initialState,action)=>{
             return{
                 ...state,
                 reloadAfterUpdate:true
+            }
+        }
+        case END_UPDATE:{
+            return{
+                ...state,
+                reloadAfterUpdate:false
             }
         }
 

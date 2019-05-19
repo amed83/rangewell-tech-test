@@ -6,7 +6,6 @@ const mongoose = require('mongoose')
 const db = require("./data/models");
 
 
-
 //routes
 routerApi.get("/deals", async (req, res) => {
     let title;
@@ -39,39 +38,29 @@ routerApi.get('/deal/:id', async (req, res) => {
     });
 });
 
-// 20190515192049
-// http://localhost:3001/api/deals/
+
 
 const toDelete = [{
-    "_id": "5ce1a37c349cf06a7491a52e",
-    "title": "rtr",
-    "amountRequired": 3433,
-    "createdAt": "2019-05-19T18:42:04.664Z",
-    "__v": 0
-  },
-  {
-    "_id": "5ce1a3594a2e3f40982381cd",
-    "title": "ede",
-    "amountRequired": null,
-    "createdAt": "2019-05-19T18:41:29.210Z",
-    "__v": 0
-  },
-  {
-    "_id": "5ce1a2765da784225c83d464",
-    "title": "",
-    "amountRequired": null,
-    "createdAt": "2019-05-19T18:37:42.218Z",
-    "__v": 0
-  },
-  {
-    "_id": "5ce1a18e97a68943644f6e30",
-    "title": "Frenk",
-    "amountRequired": 1452,
-    "createdAt": "2019-05-19T18:33:50.484Z",
-    "__v": 0
-  },
-]
-// // console.log('todelete ', toDelete[0]._id)
+    "_id": "5ce1a63571f66d425c3bccb9",
+   "title": "Vechio",
+   "amountRequired": 256,
+   "createdAt": "2019-05-19T18:53:41.424Z",
+   "__v": 0
+ },
+ {
+   "_id": "5ce1a59be07f26370cb8ec58",
+   "title": "NewDeals3526",
+   "amountRequired": 34343,
+   "createdAt": "2019-05-19T18:51:07.016Z",
+   "__v": 0
+ },
+ {
+   "_id": "5ce1a3c55eb817558c804019",
+   "title": "Update Deal",
+   "amountRequired": 3652,
+   "createdAt": "2019-05-19T18:43:17.192Z",
+   "__v": 0
+}]
 
 
 toDelete.map(el=>{

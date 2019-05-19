@@ -4,7 +4,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import DatePicker from "react-datepicker";
 import {loadDeals,creatingNewDeal,
-    saveNewDeal,loadStats,filterDetails,editDeal} from './actions/index'
+    saveNewDeal,loadStats,filterDetails,editDeal,updateTerminated} from './actions/index'
 import {connect} from 'react-redux'
 import Edit from './Edit'
 
@@ -27,10 +27,10 @@ class App extends Component {
     }
     
     componentDidUpdate(prevProps){
-        console.log('prev ', prevProps.reloadAfterUpdate)
-        console.log('update ',this.props.reloadAfterUpdate)
+
         if( prevProps.reloadAfterUpdate!==this.props.reloadAfterUpdate){
             this.loadDeals()
+            this.props.endUpdate()
         }
         
     }
@@ -45,7 +45,7 @@ class App extends Component {
             this.loadStats()
         })
         .catch(err=>{
-            console.log('response',err )
+            console.log('error',err )
             this.setState({
                 error:true
             })
@@ -94,9 +94,7 @@ class App extends Component {
             this.props.newDealDetails(dealPayload)
         }
     }
-    reloadAFter(){
-        console.log('ciao ')
-    }
+    
     saveDeal=()=>{
         const dealPayload= this.props.newDealInput.newDeal
         if(!dealPayload.dealName || !dealPayload.dealAmount ){
@@ -120,6 +118,7 @@ class App extends Component {
             return
         }
         this.setState({editIndex:index})
+        
         const dealToEdit = this.props.deals[index]
         this.props.editDeal(dealToEdit)
     }
@@ -170,6 +169,7 @@ class App extends Component {
                     <div className='MainContainer'>
                         <div>
                             <h1>Deals</h1>
+                            <p>(click deal to edit it)</p>
                             {deals}
                             {this.state.error &&
                                 <p>No result found</p>}
@@ -223,8 +223,8 @@ const mapDispatchToProps = dispatch=>{
         newDealDetails:(details)=>dispatch(creatingNewDeal(details)),
         saveNewD:(newDeal)=>dispatch(saveNewDeal(newDeal)),
         getStats:(stats)=>dispatch(loadStats(stats)),
-        editDeal:(deal)=>dispatch(editDeal(deal))
-     
+        editDeal:(deal)=>dispatch(editDeal(deal)),
+        endUpdate:()=>dispatch(updateTerminated())
     }
 }
   
