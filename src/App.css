@@ -29,6 +29,41 @@
     margin: 0 auto;
 }
 
+.MainContainer{
+    display:flex;
+    width:60%;
+    justify-content:space-between;
+}
+.dealData-container{
+    display: flex;
+    width:300px;
+    justify-content: space-between;
+}
+.addBtn{
+    width:8rem;
+    height:4rem;
+    background-color: #23C4DC;
+    font-weight: bold;
+    font-size: 20px;
+    cursor:pointer;
+    border-radius:8px;
+    margin-top:2rem
+}
+
+.Stats >p{
+    font-weight: bold;
+}
+.DealParagraph{
+    cursor:pointer;
+}
+
+
+.Input{
+    min-height: 18px;
+    margin-right:10px;
+    padding:5px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

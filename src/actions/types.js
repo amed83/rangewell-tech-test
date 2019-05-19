@@ -1,0 +1,7 @@
+export const LOAD_DEALS = 'LOAD_DEALS' 
+export const CREATING_NEW_DEAL = 'CREATING_NEW_DEAL'
+export const SAVE_NEW_DEAL = 'SAVE_NEW_DEAL'
+export const LOAD_STATS = 'LOAD_STATS'
+export const EDIT_DEAL='EDIT_DEAL'
+export const SAVE_EDIT = 'SAVE_EDIT'
+export const RELOAD_DEALS = 'RELOAD_DEALS'

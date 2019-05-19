@@ -1,8 +1,9 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose'
-import cors from 'cors'
-import routerApi from './api'
+const express= require('express');
+const bodyParser=require('body-parser');
+const mongoose=require('mongoose')
+const cors=require('cors')
+const routerApi=require('./api')
+
 
 //connect to mogodb
 const url = 'mongodb://rangewell_public:XbcNprbwbBM6X5tc@clustertest-shard-00-00-tzuwz.mongodb.net:27017/rangewell-interview?ssl=true&replicaSet=ClusterTest-shard-0&authSource=admin&retryWrites=true';
@@ -14,7 +15,7 @@ app.use(cors({
 	origin: '*',
 	optionsSuccessStatus: 200
 }));
-
+app.use(require("body-parser").json());
 app.use(
 	bodyParser.json({
 		limit: '10mb'
@@ -26,15 +27,21 @@ app.use(
 		extended: true
 	})
 );
-app.get('/', (req,res) =>{
-    res.send({
-        message: 'Welcome',
-        endpoints:[
-            '/api/deals'
-        ]
-    })
-})
+
+// 
+// app.get('/', (req,res) =>{
+//     res.send({
+//         message: 'Welcome',
+//         endpoints:[
+//             '/api/deals'
+//         ]
+//     })
+// })
+
+
+
 app.use('/api', routerApi);
+
 
 app.set('port', process.env.PORT || 3001);
 
